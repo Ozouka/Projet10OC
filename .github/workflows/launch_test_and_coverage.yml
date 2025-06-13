@@ -52,6 +52,7 @@ jobs:
         run: |
           cd front
           npm install
+          npm install --save-dev karma-junit-reporter
           
       - name: Run Angular tests
         run: |
@@ -63,6 +64,12 @@ jobs:
         with:
           name: frontend-coverage
           path: front/coverage/
+          
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontend-test-results
+          path: front/test-results.xml
           
       - name: Test Report
         uses: phoenix-actions/test-reporting@v8
