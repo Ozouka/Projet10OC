@@ -53,6 +53,7 @@ jobs:
           cd front
           npm install
           npm install karma-junit-reporter@2.0.1 --save-dev
+          npm list karma-junit-reporter
           
       - name: Run Angular tests
         run: |
