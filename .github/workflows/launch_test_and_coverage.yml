@@ -39,6 +39,7 @@ jobs:
 
   test-frontend:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
       
@@ -52,16 +53,10 @@ jobs:
           cd front
           npm install
           
-      - name: Run tests with coverage
+      - name: Run Angular tests
         run: |
           cd front
-          npm run test -- --code-coverage
-          
-      - name: Generate JUnit report
-        run: |
-          cd front
-          npm install --save-dev jest-junit
-          npx jest --ci --reporters=default --reporters=jest-junit
+          npm run test -- --watch=false --browsers=ChromeHeadless --code-coverage
           
       - name: Upload coverage report
         uses: actions/upload-artifact@v4
@@ -74,5 +69,5 @@ jobs:
         if: success() || failure()
         with:
           name: Tests Frontend
-          path: front/junit.xml
+          path: front/coverage/junit.xml
           reporter: jest-junit 
