@@ -23,7 +23,7 @@ jobs:
       - name: Build backend
         run: |
           cd back
-          ./mvnw clean compile
+          mvn clean verify
 
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@v2
