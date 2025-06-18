@@ -24,6 +24,7 @@ jobs:
         run: |
           cd back
           mvn clean verify
+          
 
       - name: SonarCloud Scan Backend
         uses: SonarSource/sonarcloud-github-action@v2
@@ -48,7 +49,8 @@ jobs:
         run: |
           cd front
           npm install
-
+          npm run test -- --watch=false --code-coverage
+          
       - name: SonarCloud Scan Frontend
         uses: SonarSource/sonarcloud-github-action@v2
         env:
