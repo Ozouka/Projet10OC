@@ -7,7 +7,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  sonarcloud:
+  sonarcloud-backend:
     runs-on: ubuntu-latest
 
     steps:
@@ -25,7 +25,31 @@ jobs:
           cd back
           mvn clean verify
 
-      - name: SonarCloud Scan
+      - name: SonarCloud Scan Backend
         uses: SonarSource/sonarcloud-github-action@v2
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+  sonarcloud-frontend:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          cache-dependency-path: front/package-lock.json
+
+      - name: Build frontend
+        run: |
+          cd front
+          npm install
+
+      - name: SonarCloud Scan Frontend
+        uses: SonarSource/sonarcloud-github-action@v2
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} 
