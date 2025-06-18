@@ -49,7 +49,7 @@ jobs:
         run: |
           cd front
           npm install
-          npm run test -- --watch=false --code-coverage
+          npm run test -- --code-coverage --browsers=ChromeHeadless --no-watch
           
       - name: SonarCloud Scan Frontend
         uses: SonarSource/sonarcloud-github-action@v2
