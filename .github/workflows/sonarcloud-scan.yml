@@ -56,6 +56,12 @@ jobs:
           cd front
           npm install
           npm run test -- --code-coverage --browsers=ChromeHeadless --no-watch
+
+      - name: Code coverage
+        uses: actions/upload-artifact@v4
+        with:
+          name: code-coverage-report
+          path: ${{ github.workspace }}/front/coverage/bobapp/**
           
       - name: SonarCloud Scan Frontend
         uses: SonarSource/sonarcloud-github-action@v2
