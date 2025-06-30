@@ -24,6 +24,12 @@ jobs:
         run: |
           cd back
           mvn clean verify
+
+      - name: JaCoCo coverage report
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage_backend
+          path: ${{ github.workspace }}/back/target/site/jacoco
           
 
       - name: SonarCloud Scan Backend
