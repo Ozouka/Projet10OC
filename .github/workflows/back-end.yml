@@ -61,8 +61,6 @@ jobs:
 
       - name: SonarCloud Scan Backend
         uses: SonarSource/sonarcloud-github-action@v2
-        with:
-          args: -Dsonar.sources=back/src/main/java,front/src -Dsonar.tests=back/src/test/java -Dsonar.java.binaries=back/target/classes -Dsonar.java.test.binaries=back/target/test-classes -Dsonar.coverage.jacoco.xmlReportPaths=back/target/site/jacoco/jacoco.xml -Dsonar.test.inclusions=front/src/**/*.spec.ts,front/src/**/*.test.ts
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
