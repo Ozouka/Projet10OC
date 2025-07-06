@@ -65,6 +65,8 @@ jobs:
 
       - name: SonarCloud Scan Frontend
         uses: SonarSource/sonarcloud-github-action@v2
+        with:
+          args: -Dsonar.sources=front/src -Dsonar.javascript.lcov.reportPaths=front/coverage/bobapp/lcov.info -Dsonar.test.inclusions=front/src/**/*.spec.ts,front/src/**/*.test.ts -Dsonar.exclusions=**/node_modules/**,**/dist/**,**/target/**,**/coverage/**,**/build/**
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
