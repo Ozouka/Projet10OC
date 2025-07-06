@@ -42,9 +42,6 @@ jobs:
   sonarcloud-frontend:
     needs: test-frontend
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: front
     steps:
       - name: Checkout sources
         uses: actions/checkout@v4
@@ -57,10 +54,14 @@ jobs:
           cache-dependency-path: front/package-lock.json
 
       - name: Install dependencies
-        run: npm ci
+        run: |
+          cd front
+          npm ci
 
       - name: Run tests with coverage for SonarCloud
-        run: npm run test -- --code-coverage --browsers=ChromeHeadless --no-watch
+        run: |
+          cd front
+          npm run test -- --code-coverage --browsers=ChromeHeadless --no-watch
 
       - name: SonarCloud Scan Frontend
         uses: SonarSource/sonarcloud-github-action@v2
