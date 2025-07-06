@@ -56,13 +56,10 @@ jobs:
           java-version: '17'
           cache: maven
 
-      - name: Build backend
-        run: mvn clean verify
-
-      - name: SonarCloud Scan Backend
-        uses: SonarSource/sonarcloud-github-action@v2
+      - name: Build and analyze with SonarCloud
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Ozouka_Projet10OC
 
   docker-backend:
     needs: [test-backend, sonarcloud-backend]
