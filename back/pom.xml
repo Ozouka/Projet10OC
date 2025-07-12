@@ -17,8 +17,8 @@
 		<java.version>11</java.version>
 		<sonar.organization>12052003</sonar.organization>
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
-		<sonar.projectKey>Ozouka_Projet10OC</sonar.projectKey>
-		<sonar.projectName>bob-app</sonar.projectName>
+		<sonar.projectKey>Ozouka_Projet10OC-backend</sonar.projectKey>
+		<sonar.projectName>bob-app-backend</sonar.projectName>
 		<sonar.projectVersion>1.0</sonar.projectVersion>
 		<sonar.sources>src/main/java</sonar.sources>
 		<sonar.tests>src/test/java</sonar.tests>
