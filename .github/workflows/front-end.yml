@@ -59,13 +59,11 @@ jobs:
           cache-dependency-path: front/package-lock.json
 
       - name: Install dependencies
-        run: |
-          cd front
+        run: 
           npm ci
 
       - name: Run tests with coverage for SonarCloud
-        run: |
-          cd front
+        run: 
           npm run test -- --code-coverage --browsers=ChromeHeadless --no-watch
 
       - name: SonarCloud Scan Frontend
