@@ -21,7 +21,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: ${{ matrix.node-version }}
           cache: 'npm'
           cache-dependency-path: front/package-lock.json
           
@@ -54,7 +54,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: ${{ matrix.node-version }}
           cache: 'npm'
           cache-dependency-path: front/package-lock.json
 
@@ -66,8 +66,14 @@ jobs:
         run: 
           npm run test -- --code-coverage --browsers=ChromeHeadless --no-watch
 
+      - name: Code coverage
+        uses: actions/upload-artifact@v4
+        with:
+          name: code-coverage-report
+          path: ${{ github.workspace }}/front/coverage/bobapp/**
+
       - name: SonarCloud Scan Frontend
-        uses: SonarSource/sonarcloud-github-action@v2
+        uses: SonarSource/sonarqube-scan-action@master
         with:
           projectBaseDir: front
         env:
