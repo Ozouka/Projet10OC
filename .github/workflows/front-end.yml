@@ -72,6 +72,7 @@ jobs:
           projectBaseDir: front
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_BRANCH_NAME: main
 
   docker-frontend:
     needs: [test-frontend, sonarcloud-frontend]
